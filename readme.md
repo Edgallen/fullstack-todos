@@ -11,7 +11,6 @@ Idea of this project to create the same app on different fullstack framework.
 ## Roadmap
 
 - [ ] Add Next.js App
-- [ ] Add Figma template
 - [ ] Add Signal App
 - [ ] Add Nuxt App 
 - [ ] To be added...

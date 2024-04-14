@@ -9,7 +9,7 @@ datasource db {
 
 model User {
   id       Int    @id @default(autoincrement())
-  nickname String @unique
+  username String @unique
   password String
 
   createdAt DateTime @default(now())
@@ -18,10 +18,16 @@ model User {
   todos Todo[]
 }
 
+enum Status {
+  NEW
+  IN_WORK
+  DONE
+}
+
 model Todo {
-  id   Int     @id @default(autoincrement())
-  text String
-  done Boolean
+  id     Int    @id @default(autoincrement())
+  text   String
+  status Status
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
