@@ -279,5 +279,3 @@ dist
 .env.test.local
 .env.production.Local
 .turbo
-
-lib/
