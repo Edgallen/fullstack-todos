@@ -7,7 +7,8 @@
   "scripts": {
     "prisma-studio": "prisma studio",
     "migrate-dev": "prisma migrate dev",
-    "generate-types": "prisma generate"
+    "generate-types": "prisma generate",
+    "app:next-dev": "cd ./apps/next && pnpm run-script dev"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
