@@ -12,24 +12,16 @@ Idea of this project to create the same app on different fullstack framework.
     ``` shell
     pnpm install
     ```
-3. Cd to desired app (example: apps/next):
-    ``` shell
-    cd apps/next
-    ```
-4. Run install again:
-    ``` shell
-    pnpm install
-    ```
-5. Add .env in root folder (generate your own jwt-secret: https://www.javainuse.com/jwtgenerator):   
+3. Add .env in root folder (generate your own jwt-secret: https://www.javainuse.com/jwtgenerator):   
     ```
     DATABASE_URL="postgres://myuser:mypassword@localhost:5432/testing-db"
     JWT_SECRET=[insert your jwt-secret here]
     ```
-6. In root package.json run script to generate prisma types
+4. In root package.json run script to generate prisma types
    ``` shell
     pnpm run generate-types
     ```
-7. In root package.json run script to start desired app:
+5. In root package.json run script to start desired app:
    ``` shell
     pnpm run app:next-dev
     ```
