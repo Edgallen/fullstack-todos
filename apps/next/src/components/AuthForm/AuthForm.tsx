@@ -1,6 +1,5 @@
 'use client'
 
-
 import React, {FC, PropsWithChildren} from "react";
 
 interface IProps {
