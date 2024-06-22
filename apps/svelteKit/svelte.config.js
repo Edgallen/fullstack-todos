@@ -16,7 +16,9 @@ const config = {
 			$components: 'src/components',
 			$services: 'src/services',
 			$constants: 'src/constants',
-			$interfaces: 'src/interfaces'
+			$interfaces: 'src/interfaces',
+			$pages: 'src/pages',
+			$dataAccess: 'src/dataAccess',
 		}
 	}
 };

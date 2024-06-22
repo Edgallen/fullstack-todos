@@ -1,6 +1,7 @@
 <script lang="ts">
     import AuthForm from "$components/AuthForm/AuthForm.svelte";
     import InputField from "$components/InputField/InputField.svelte";
+
     import type {IAuthFormState} from "$interfaces/auth";
 
     export let form: IAuthFormState | null;

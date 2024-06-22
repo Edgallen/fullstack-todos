@@ -1,7 +1,8 @@
 import {fail, redirect} from "@sveltejs/kit";
-import prisma from "$lib/prisma";
 
 import AuthService from "$services/authService";
+
+import {getSingleUser} from "$dataAccess/users";
 
 import {AuthFormSchema} from "$interfaces/auth";
 
@@ -19,7 +20,6 @@ export const actions = {
         }
 
         const validFields = AuthFormSchema.safeParse(formDataFields)
-
         if (!validFields.success) {
             const errors = validFields.error.flatten().fieldErrors
 
@@ -49,11 +49,7 @@ export const actions = {
 
     testLogIn: async ({ cookies }) => {
         try {
-            const testUser = await prisma.user.findUnique({
-                where: {
-                    username: testUserCredentials.username
-                }
-            })
+            const testUser = await getSingleUser(testUserCredentials.username)
 
             testUser
                 ? await AuthService.logIn(testUserCredentials.username, testUserCredentials.password, cookies)

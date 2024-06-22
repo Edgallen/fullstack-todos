@@ -22,6 +22,10 @@ class SessionService {
         return payload;
     }
 
+    async getSession(cookie: string) {
+        return await this.decrypt(cookie)
+    }
+
     async createSession(user: User, cookies: Cookies) {
         const expires = new Date(Date.now() + sessionDurationTime);
         const session = await this.encrypt({ user, expires });

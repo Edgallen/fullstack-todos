@@ -40,8 +40,9 @@ const InputForm: FC = () => {
                     autoComplete="off"
                 />
 
+                {/* TODO: Дизейблить во время загрузки */}
                 <button
-                    className="flex items-center justify-center gap-1 size-full w-28 h-full text-2xl bg-indigo-600 shadow-sm rounded-r-md hover:bg-indigo-500"
+                    className="flex items-center justify-center gap-1 size-full w-28 h-full text-2xl text-white bg-indigo-600 shadow-sm rounded-r-md hover:bg-indigo-500 disabled:bg-gray-500 disabled:cursor-progress"
                     type="submit"
                 >
                     <Icon

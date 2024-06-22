@@ -1,8 +1,10 @@
 <script>
-
+    import MainLayout from "$components/layouts/MainLayout.svelte";
+    import RootPage from "$pages/RootPage/RootPage.svelte";
 </script>
 
-<!-- TODO: Добавить страницу -->
 <h1>
-    Hello, World!
+    <MainLayout>
+        <RootPage />
+    </MainLayout>
 </h1>
