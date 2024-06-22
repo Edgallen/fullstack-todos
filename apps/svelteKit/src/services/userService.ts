@@ -21,6 +21,10 @@ class UserService {
             console.log(error)
         }
     }
+
+    async logout(cookies: Cookies) {
+        await SessionService.destroySession(cookies)
+    }
 }
 
 const UserServiceInstance = new UserService();

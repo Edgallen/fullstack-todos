@@ -1,6 +1,8 @@
 import AuthService from "$services/authService";
 import {redirect} from "@sveltejs/kit";
 
+import {throwFormError, throwZodFormError} from "$lib/errorHandling";
+
 import {RegisterAuthFormSchema} from "$interfaces/auth";
 
 export const actions = {
@@ -15,10 +17,11 @@ export const actions = {
         const validFields = RegisterAuthFormSchema.safeParse(formDataFields)
 
         if (!validFields.success) {
-            return {
-                ...formDataFields,
-                errors: validFields.error.flatten().fieldErrors,
-            }
+            return throwZodFormError({
+                status: 422,
+                zodError: validFields.error,
+                formDataFields
+            })
         }
 
         const { username, password } = validFields.data
@@ -27,10 +30,11 @@ export const actions = {
             const user = await AuthService.registration(username, password, cookies)
 
             if (Boolean(Object.keys(user.errors).length)) {
-                return {
-                    ...formDataFields,
+                return throwFormError({
+                    status: 422,
                     errors: user.errors,
-                }
+                    formDataFields
+                })
             }
         } catch (error) {
             console.log(error)

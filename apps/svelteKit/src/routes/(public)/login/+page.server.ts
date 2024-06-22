@@ -1,4 +1,6 @@
-import {fail, redirect} from "@sveltejs/kit";
+import {redirect} from "@sveltejs/kit";
+
+import {throwFormError, throwZodFormError} from "$lib/errorHandling";
 
 import AuthService from "$services/authService";
 
@@ -21,12 +23,11 @@ export const actions = {
 
         const validFields = AuthFormSchema.safeParse(formDataFields)
         if (!validFields.success) {
-            const errors = validFields.error.flatten().fieldErrors
-
-            return fail(422, {
-                ...formDataFields,
-                errors
-            });
+            return throwZodFormError({
+                status: 422,
+                zodError: validFields.error,
+                formDataFields
+            })
         }
 
         const { username, password } = validFields.data
@@ -35,10 +36,11 @@ export const actions = {
             const user = await AuthService.logIn(username, password, cookies)
 
             if (Boolean(Object.keys(user.errors).length)) {
-                return fail(422, {
-                    ...formDataFields,
-                    errors: user.errors
-                });
+                return throwFormError({
+                    status: 422,
+                    errors: user.errors,
+                    formDataFields
+                })
             }
         } catch (error) {
             console.log(error)

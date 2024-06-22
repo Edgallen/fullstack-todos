@@ -1,11 +1,20 @@
-import {fail} from "@sveltejs/kit";
-
 import UserService from "$services/userService";
+
+import {throwZodFormError} from "$lib/errorHandling";
 
 import {createTodo, deleteTodo, updateTodo} from "$dataAccess/todos";
 
 import {DeleteTodoSchema, TodoFormSchema, UpdateTodoSchema} from "$interfaces/todos";
 import {Status} from "@prisma/client";
+
+export const load = async ({ parent, cookies }) => {
+    await parent();
+    const userData = await UserService.getUserFromSessionToken(cookies)
+
+    return {
+        userData
+    }
+}
 
 export const actions = {
     addTodo: async ({ request, cookies }) => {
@@ -19,11 +28,11 @@ export const actions = {
         const validFields = TodoFormSchema.safeParse(formDataFields)
 
         if (!validFields.success) {
-            const errors = validFields.error.flatten().fieldErrors
-            return fail(422, {
-                ...formDataFields,
-                errors
-            });
+            return throwZodFormError({
+                status: 422,
+                zodError: validFields.error,
+                formDataFields
+            })
         }
 
         const { text } = validFields.data
@@ -47,10 +56,10 @@ export const actions = {
         const validFields = UpdateTodoSchema.safeParse(formDataFields)
 
         if (!validFields.success) {
-            const errors = validFields.error.flatten().fieldErrors
-            return fail(422, {
-                errors
-            });
+            return throwZodFormError({
+                status: 422,
+                zodError: validFields.error
+            })
         }
 
         const { id, status } = validFields.data
@@ -71,16 +80,24 @@ export const actions = {
         const validFields = DeleteTodoSchema.safeParse(formDataFields)
 
         if (!validFields.success) {
-            const errors = validFields.error.flatten().fieldErrors
-            return fail(422, {
-                errors
-            });
+            return throwZodFormError({
+                status: 422,
+                zodError: validFields.error
+            })
         }
 
         const { id } = validFields.data
 
         try {
             await deleteTodo(id)
+        } catch (error) {
+            console.log(error)
+        }
+    },
+
+    logOut: async ({ cookies }) => {
+        try {
+            await UserService.logout(cookies)
         } catch (error) {
             console.log(error)
         }

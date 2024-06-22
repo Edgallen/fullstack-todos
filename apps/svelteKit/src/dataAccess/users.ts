@@ -7,3 +7,12 @@ export const getSingleUser = (username: string) => (
         }
     })
 )
+
+export const createUser = (username: string, password: string) => (
+    prisma.user.create({
+        data: {
+            username,
+            password
+        }
+    })
+)

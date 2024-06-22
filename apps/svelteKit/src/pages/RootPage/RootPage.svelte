@@ -14,7 +14,6 @@
 
     const fetchTodosOnSubmit = (status: string | null) => {
         if (status) {
-            console.log('fetched')
             todosData = getTodos(status)
         }
     }
