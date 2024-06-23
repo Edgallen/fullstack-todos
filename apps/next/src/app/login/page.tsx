@@ -60,7 +60,7 @@ const Page = () => {
                 </p>
 
                 <button
-                    className="bg-indigo-600 px-3 py-1.5 text-sm font-semibold rounded-md"
+                    className="bg-indigo-600 text-white px-3 py-1.5 text-sm font-semibold rounded-md"
                     onClick={onTestUserSignInHandler}
                 >
                     Sign in as test user

@@ -1,47 +1,31 @@
-'use client'
-
 import {FC} from "react";
-import {cn} from "@/lib/utils";
-import {Prisma, Status} from "@prisma/client";
 
-import StatusBadge from "./components/StatusBadge/StatusBadge";
-import CircleCheck from "./components/CircleCheck/CircleCheck";
-import ActionsMenu from "./components/ActionsMenu/ActionsMenu";
+import List from "./components/List/List";
+
+import {getTodos} from "@/api/todos/actions";
+
+import {statusesMap} from "@/pages/RootPage/constants";
 
 interface IProps {
-    todos: Prisma.TodoGetPayload<null>[]
+    searchParams?: {
+        status?: string
+    }
 }
 
-const TodoList: FC<IProps> = ({ todos }) => (
-    <ul className="flex flex-col gap-4 mt-4 pb-10">
-        {todos.map(({ id, text, status }) => (
-            <li
-                key={id}
-                className="flex items-center justify-between border px-4 h-20 rounded-md border-gray-300 shadow-sm"
-            >
-                <div className="flex items-center">
-                    <CircleCheck status={status} />
+const TodoList: FC<IProps> = async ({ searchParams }) => {
+    const selectedStatus = searchParams?.status || statusesMap.ALL
 
-                    <div className="flex flex-col gap-1 items-start">
-                        <span
-                            className={cn("text-gray-900", {
-                                'line-through': status === Status.DONE
-                            })}
-                        >
-                            {text}
-                        </span>
+    const statusToFetchBy = selectedStatus === statusesMap.ALL
+        ? null
+        : selectedStatus
 
-                        <StatusBadge status={status} />
-                    </div>
-                </div>
+    const todosResponse = await getTodos(statusToFetchBy);
 
-                <ActionsMenu
-                    id={id}
-                    status={status}
-                />
-            </li>
-        ))}
-    </ul>
-);
+    return (
+        <List
+            todos={todosResponse?.data || []}
+        />
+    )
+};
 
 export default TodoList;

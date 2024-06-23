@@ -21,7 +21,9 @@ const StatusSelector: FC = () => {
     }, [pathname, router, searchParams])
 
     useEffect(() => {
-        if (!selectedStatus) {
+        const isStatusSelected = !statuses.includes(selectedStatus as TStatusesMap);
+
+        if (isStatusSelected) {
             onStatusChange(statusesMap.ALL)
         }
     }, [onStatusChange, selectedStatus]);
