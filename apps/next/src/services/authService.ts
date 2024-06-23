@@ -1,15 +1,12 @@
-import prisma from "@/lib/prisma";
 import bcrypt from 'bcrypt'
+
+import {createUser, getSingleUser} from "@/dataAccess/users";
 
 import SessionService from "@/services/sessionService";
 
 class AuthService {
     async registration(username: string, password: string) {
-        const pendingUser = await prisma.user.findUnique({
-            where: {
-                username
-            }
-        })
+        const pendingUser = await getSingleUser(username)
 
         if (pendingUser) {
             return {
@@ -23,12 +20,7 @@ class AuthService {
 
         const hashPassword = await bcrypt.hash(password, 3)
 
-        const user = await prisma.user.create({
-            data: {
-                username,
-                password: hashPassword
-            }
-        })
+        const user = await createUser(username, hashPassword)
 
         await SessionService.createSession(user)
 
@@ -36,11 +28,7 @@ class AuthService {
     }
 
     async logIn(username: string, password: string) {
-        const user = await prisma.user.findUnique({
-            where: {
-                username
-            }
-        })
+        const user = await getSingleUser(username)
 
         if (!user) {
             return {

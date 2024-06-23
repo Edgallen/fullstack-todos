@@ -4,10 +4,11 @@ import {FC, useRef} from "react";
 import {useFormState} from "react-dom";
 import {cn} from "@/lib/utils";
 
+import SubmitButton from "./components/SubmitButton/SubmitButton";
+
 import {createTodo} from "@/api/todos/actions";
 
 import type {ITodoFormState} from "@/api/todos/definitions";
-import Icon from "@/components/Icon/Icon";
 
 const initialState: ITodoFormState = {
     errors: {},
@@ -40,20 +41,7 @@ const InputForm: FC = () => {
                     autoComplete="off"
                 />
 
-                {/* TODO: Дизейблить во время загрузки */}
-                <button
-                    className="flex items-center justify-center gap-1 size-full w-28 h-full text-2xl text-white bg-indigo-600 shadow-sm rounded-r-md hover:bg-indigo-500 disabled:bg-gray-500 disabled:cursor-progress"
-                    type="submit"
-                >
-                    <Icon
-                        type='plus'
-                        className="text-white"
-                        height={20}
-                        width={20}
-                    />
-
-                    <span className="text-xl">Add</span>
-                </button>
+                <SubmitButton />
             </form>
 
             {isEmptyInput && (
