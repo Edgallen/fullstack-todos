@@ -24,7 +24,6 @@ const RootPage: FC<IProps> = async ({ searchParams }) => (
                 </span>
             }
         >
-            {/* TODO: Попробовать обернуть в store и не передавать пропсами параметры */}
             <TodoList
                 searchParams={searchParams}
             />

@@ -1,31 +1,24 @@
 'use server'
 
 import {revalidatePath} from "next/cache";
-import prisma from "@/lib/prisma";
-import {Status} from "@prisma/client";
 
 import UserService from "@/services/userService";
 
+import {
+    getTodos as dbGetTodos,
+    createTodo as dbCreateTodo,
+    updateTodo as dbUpdateTodo,
+    deleteTodo as dbDeleteTodo
+} from '@/dataAccess/todos'
+
+import {Status} from "@prisma/client";
 import {ITodoFormState, TodoFormSchema} from "@/api/todos/definitions";
 
 export const getTodos = async (status: string | null) => {
     const user = await UserService.getUserFromSessionToken()
 
     try {
-        const todos = await prisma.todo.findMany({
-            where: {
-                userId: user.id,
-                ...(status ? {status: status as Status} : {})
-            },
-            orderBy: [
-                {
-                    status: 'desc'
-                },
-                {
-                    createdAt: 'desc'
-                }
-            ]
-        })
+        const todos = await dbGetTodos(user.id, status as Status);
 
         return { data: todos }
     } catch (error) {
@@ -49,13 +42,7 @@ export const createTodo = async (_: ITodoFormState, formData: FormData) => {
     const { text } = validFields.data
 
     try {
-        await prisma.todo.create({
-           data: {
-               userId: userData.id,
-               status: 'NEW',
-               text
-           }
-        })
+        await dbCreateTodo(userData.id, text)
     } catch (error) {
         console.log(error, '- error')
     }
@@ -69,14 +56,7 @@ export const updateTodoStatus = async (id: number, status: Status) => {
     await UserService.getUserFromSessionToken()
 
     try {
-        await prisma.todo.update({
-            data: {
-              status
-            },
-            where: {
-                id
-            }
-        })
+        await dbUpdateTodo(id, status)
     } catch (error) {
         console.log(error, '- error')
     }
@@ -88,11 +68,7 @@ export const deleteTodo = async (id: number) => {
     await UserService.getUserFromSessionToken()
 
     try {
-        await prisma.todo.delete({
-            where: {
-                id
-            }
-        })
+        await dbDeleteTodo(id)
     } catch (error) {
         console.log(error, '- error')
     }

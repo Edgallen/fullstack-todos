@@ -43,7 +43,8 @@ Idea of this project to create the same app on different fullstack framework.
 ## Roadmap
 
 - [x] Add Next.js App
-- [ ] Add SvelteKit App 
+- [x] Add SvelteKit App 
+- [ ] Deploy and set up ci/cd
 - [ ] Add Signal App
 - [ ] Add Nuxt App 
 - [ ] To be added...

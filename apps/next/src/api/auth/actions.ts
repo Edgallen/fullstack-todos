@@ -1,7 +1,8 @@
 'use server'
 
 import {redirect} from "next/navigation";
-import prisma from "@/lib/prisma";
+
+import {getSingleUser} from "@/dataAccess/users";
 
 import UserService from "@/services/authService";
 
@@ -40,11 +41,7 @@ export const logIn = async (_: IAuthFormState, formData: FormData) => {
 
 export const SignInAsTestUser = async () => {
     try {
-        const testUser = await prisma.user.findUnique({
-            where: {
-                username: testUserCredentials.username
-            }
-        })
+        const testUser = await getSingleUser(testUserCredentials.username)
 
         testUser
             ? await UserService.logIn(testUserCredentials.username, testUserCredentials.password)
