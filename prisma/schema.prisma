@@ -16,6 +16,16 @@ model User {
   updatedAt DateTime @updatedAt
 
   todos Todo[]
+
+  sessions Session[]
+}
+
+model Session {
+  id        String   @id
+  userId    Int
+  expiresAt DateTime
+
+  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 enum Status {

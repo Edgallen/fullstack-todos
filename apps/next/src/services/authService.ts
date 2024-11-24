@@ -1,8 +1,12 @@
 import bcrypt from 'bcrypt'
+import {invalidateSession} from "@fullstack-todos/auth/src";
 
 import {createUser, getSingleUser} from "@/dataAccess/users";
 
 import SessionService from "@/services/sessionService";
+import {deleteSessionTokenCookie, getCurrentSession} from "@/services/sessionCookie";
+
+import prisma from "@/lib/prisma";
 
 class AuthService {
     async registration(username: string, password: string) {
@@ -56,7 +60,16 @@ class AuthService {
     }
 
     async logout() {
-        await SessionService.destroySession()
+        const currentSession = await getCurrentSession()
+
+        if (currentSession?.session) {
+            await invalidateSession({
+                sessionId: currentSession.session.id,
+                prismaClient: prisma
+            })
+        }
+
+        deleteSessionTokenCookie()
     }
 }
 

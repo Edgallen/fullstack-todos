@@ -1,27 +1,46 @@
-import {NextRequest} from 'next/server'
-
-import SessionService from "@/services/sessionService";
-
-import {sessionCookieName} from "@/constants/session";
-
-const publicRoutes = ['/login', '/register']
+import {NextRequest, NextResponse} from 'next/server'
 
 export const middleware = async (request: NextRequest) => {
-    const sessionCookie = request.cookies.get(sessionCookieName)?.value;
-    const pathname = request.nextUrl.pathname;
-    const isPublicRoute = publicRoutes.includes(pathname);
+    if (request.method === "GET") {
+        const response = NextResponse.next();
+        const token = request.cookies.get("session")?.value ?? null;
 
-    if (sessionCookie) {
-        try {
-            await SessionService.updateSession(sessionCookie)
-
-            if (isPublicRoute) {
-                return Response.redirect(new URL('/', request.url))
-            }
-        } catch (error) {
-            return SessionService.destroyInvalidSession(request)
+        if (token !== null) {
+            response.cookies.set("session", token, {
+                path: "/",
+                maxAge: 60 * 60 * 24 * 30,
+                sameSite: "lax",
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production"
+            });
         }
+
+        return response;
     }
+
+    const originHeader = request.headers.get("Origin");
+    const hostHeader = request.headers.get("Host");
+    if (originHeader === null || hostHeader === null) {
+        return new NextResponse(null, {
+            status: 403
+        });
+    }
+
+    let origin: URL;
+    try {
+        origin = new URL(originHeader);
+    } catch {
+        return new NextResponse(null, {
+            status: 403
+        });
+    }
+
+    if (origin.host !== hostHeader) {
+        return new NextResponse(null, {
+            status: 403
+        });
+    }
+    return NextResponse.next();
 }
 
 export const config = {
