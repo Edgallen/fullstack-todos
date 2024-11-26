@@ -3,6 +3,5 @@
   "include": ["src"],
   "compilerOptions": {
     "outDir": "build",
-    "emitDeclarationOnly": true
   }
 }

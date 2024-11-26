@@ -1,0 +1,13 @@
+{
+  "name": "@database/prisma",
+  "private": false,
+  "version": "0.1.0",
+  "scripts": {
+    "db:studio": "prisma studio",
+    "db:migrate-dev": "prisma migrate dev",
+    "db:generate-types": "prisma generate"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}

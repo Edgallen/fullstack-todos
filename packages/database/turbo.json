@@ -1,0 +1,14 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "db:studio": {
+      "cache": false
+    },
+    "db:migrate-dev": {
+      "cache": false
+    },
+    "db:generate-types": {
+      "cache": false
+    }
+  }
+}

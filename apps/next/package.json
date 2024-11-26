@@ -2,21 +2,25 @@
   "name": "next-todo",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
+    "check-types": "tsc --noEmit",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
     "next": "14.2.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "@fullstack-todos/auth": "workspace:*"
+    "@fullstack-todos/auth": "workspace:*",
+    "@database/prisma": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "eslint-config-next": "14.2.3"
+    "eslint-config-next": "14.2.3",
+    "@repo/eslint-config": "workspace:*"
   }
 }
