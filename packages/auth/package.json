@@ -1,0 +1,10 @@
+{
+  "private": false,
+  "name": "@fullstack-todos/auth",
+  "version": "0.1.0",
+  "description": "Fullstack-todos auth provider package",
+  "dependencies": {
+    "@oslojs/crypto": "^1.0.1",
+    "@oslojs/encoding": "^1.1.0"
+  }
+}

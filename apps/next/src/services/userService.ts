@@ -12,9 +12,16 @@ class UserService {
         const sessionCookie = cookieStore.get(sessionCookieName)?.value || ''
 
         try {
-            const session = await SessionService.getSession(sessionCookie)
+            const {
+                session,
+                user
+            } = await SessionService.getSession(sessionCookie)
 
-            return session.user as Prisma.UserGetPayload<{
+            if (!session || !user) {
+                redirect('/login')
+            }
+
+            return user as Prisma.UserGetPayload<{
                 include: {
                     todos: false
                 }
