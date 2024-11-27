@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import {FC} from "react";
-import {cn} from "@/lib/utils";
-import {Status} from "@prisma/client";
+import { FC } from "react";
+import { cn } from "@/lib/utils";
+import { Status } from "@prisma/client";
 
 import Icon from "@/components/Icon/Icon";
 
@@ -11,12 +11,12 @@ interface IProps {
 }
 
 const CircleCheck: FC<IProps> = ({ status }) => {
-    const isTodoDone = status === Status.DONE
+    const isTodoDone = status === Status.DONE;
 
     return (
         <div
             className={cn("flex items-center justify-center h-8 w-8 mr-4 border border-gray-300 rounded-full", {
-                'border-green-700': isTodoDone
+                "border-green-700": isTodoDone
             })}
         >
             {isTodoDone && (

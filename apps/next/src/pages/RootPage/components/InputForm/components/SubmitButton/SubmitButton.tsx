@@ -1,10 +1,10 @@
-import React from 'react';
-import {useFormStatus} from "react-dom";
+import React from "react";
+import { useFormStatus } from "react-dom";
 
 import Icon from "@/components/Icon/Icon";
 
 const SubmitButton = () => {
-    const { pending } = useFormStatus()
+    const { pending } = useFormStatus();
 
     return (
         <button

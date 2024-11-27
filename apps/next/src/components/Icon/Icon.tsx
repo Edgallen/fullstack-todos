@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import {FC} from "react";
+import { FC } from "react";
 
-import {icons} from './constants';
+import { icons } from "./constants";
 
-import type {IIconProps, TIconType} from "./interfaces";
+import type { IIconProps, TIconType } from "./interfaces";
 
 interface IProps extends IIconProps {
     type: TIconType

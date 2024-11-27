@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
-import {FC} from "react";
-import {Status} from "@prisma/client";
+import { FC } from "react";
+import { Status } from "@prisma/client";
 
 import Icon from "@/components/Icon/Icon";
-import {Menubar, MenubarContent, MenubarItem, MenubarTrigger} from "@/components/Menubar/Menubar";
+import { Menubar, MenubarContent, MenubarItem, MenubarTrigger } from "@/components/Menubar/Menubar";
 
-import {menuActions} from "./constants";
+import { menuActions } from "./constants";
 
 interface IProps {
     id: number
@@ -35,7 +35,7 @@ const ActionsMenu: FC<IProps> = ({
                 onClick
             }, index) => {
                 if (statusShowCondition && statusShowCondition !== status) {
-                    return null
+                    return null;
                 }
 
                 return (
@@ -54,7 +54,7 @@ const ActionsMenu: FC<IProps> = ({
 
                         <span>{title}</span>
                     </MenubarItem>
-                )}
+                );}
             )}
         </MenubarContent>
     </Menubar>

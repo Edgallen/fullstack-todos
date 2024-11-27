@@ -1,4 +1,4 @@
-import {NextRequest, NextResponse} from 'next/server'
+import { NextRequest, NextResponse } from "next/server";
 
 export const middleware = async (request: NextRequest) => {
     if (request.method === "GET") {
@@ -41,8 +41,8 @@ export const middleware = async (request: NextRequest) => {
         });
     }
     return NextResponse.next();
-}
+};
 
 export const config = {
-    matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
-}
+    matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+};

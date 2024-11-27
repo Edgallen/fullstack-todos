@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import {FC} from "react";
+import { FC } from "react";
 
-import {Menubar, MenubarContent, MenubarItem, MenubarTrigger} from "@/components/Menubar/Menubar";
+import { Menubar, MenubarContent, MenubarItem, MenubarTrigger } from "@/components/Menubar/Menubar";
 import Icon from "@/components/Icon/Icon";
 
-import {logOut} from "@/api/auth/actions";
+import { logOut } from "@/api/auth/actions";
 
 interface IProps {
     username: string;
@@ -36,6 +36,6 @@ const Header: FC<IProps> = ({ username }) => (
             </MenubarContent>
         </Menubar>
     </header>
-)
+);
 
 export default Header;

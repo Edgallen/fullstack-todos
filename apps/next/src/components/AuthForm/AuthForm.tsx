@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import React, {FC, PropsWithChildren} from "react";
+import React, { FC, PropsWithChildren } from "react";
 
 interface IProps {
     title: string;

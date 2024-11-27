@@ -1,8 +1,8 @@
-import {Status} from "@prisma/client";
+import { Status } from "@prisma/client";
 
-import {deleteTodo, updateTodoStatus} from "@/api/todos/actions";
+import { deleteTodo, updateTodoStatus } from "@/api/todos/actions";
 
-import type {TIconType} from "@/components/Icon/interfaces";
+import type { TIconType } from "@/components/Icon/interfaces";
 
 interface IMenuActions {
     title: string;
@@ -14,21 +14,21 @@ interface IMenuActions {
 
 export const menuActions: IMenuActions[] = [
     {
-        title: 'Take in Work',
-        icon: 'briefcase',
+        title: "Take in Work",
+        icon: "briefcase",
         statusShowCondition: Status.NEW,
         onClick: (id: number) => updateTodoStatus(id, Status.IN_WORK)
     },
     {
-        title: 'Mark as Done',
-        icon: 'circleCheck',
+        title: "Mark as Done",
+        icon: "circleCheck",
         statusShowCondition: Status.IN_WORK,
         onClick: (id: number) => updateTodoStatus(id, Status.DONE)
     },
     {
-        title: 'Delete',
-        icon: 'trash',
-        className: 'text-red-500',
+        title: "Delete",
+        icon: "trash",
+        className: "text-red-500",
         onClick: (id: number) => deleteTodo(id)
     },
-]
+];

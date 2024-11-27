@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import {MutableRefObject, useEffect} from "react";
+import { MutableRefObject, useEffect } from "react";
 
-const triggerEvent = 'click';
+const triggerEvent = "click";
 
 const useClickOutside = (
     ref: MutableRefObject<any>,
@@ -20,6 +20,6 @@ const useClickOutside = (
             document.removeEventListener(triggerEvent, handleClick);
         };
     });
-}
+};
 
-export default useClickOutside
+export default useClickOutside;

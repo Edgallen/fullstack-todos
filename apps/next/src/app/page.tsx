@@ -1,6 +1,6 @@
-import {FC} from "react";
+import { FC } from "react";
 
-import {MainLayout} from "@/components/Layouts";
+import { MainLayout } from "@/components/Layouts";
 import RootPage from "@/pages/RootPage/RootPage";
 
 interface IProps {
@@ -15,7 +15,7 @@ const Home: FC<IProps> = ({ searchParams }) => (
             searchParams={searchParams}
         />
     </MainLayout>
-)
+);
 
-export default Home
+export default Home;
 

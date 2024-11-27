@@ -1,4 +1,4 @@
 export const testUserCredentials = {
-    username: 'test',
-    password: 'test',
-}
+    username: "test",
+    password: "test",
+};

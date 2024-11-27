@@ -1,22 +1,22 @@
-'use client'
+"use client";
 
 import React from "react";
-import {useFormState} from "react-dom";
+import { useFormState } from "react-dom";
 import Link from "next/link";
 
 import InputField from "@/components/InputField";
 import AuthForm from "@/components/AuthForm/AuthForm";
 
-import {register} from "@/api/auth/actions";
+import { register } from "@/api/auth/actions";
 
-import type {IAuthFormState, IRegisterAuthErrors} from "@/api/auth/definitions";
+import type { IAuthFormState, IRegisterAuthErrors } from "@/api/auth/definitions";
 
 const initialSate: IAuthFormState<IRegisterAuthErrors> = {
     errors: {}
-} as const
+} as const;
 
 const Page = () => {
-    const [state, dispatch] = useFormState(register, initialSate)
+    const [state, dispatch] = useFormState(register, initialSate);
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -51,7 +51,7 @@ const Page = () => {
             </AuthForm>
 
             <p className="mt-10 text-center text-sm text-gray-500">
-                Already have account?{' '}
+                Already have account?{" "}
 
                 <Link
                     className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
