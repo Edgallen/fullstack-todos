@@ -1,27 +1,27 @@
-import {json} from "@sveltejs/kit";
-import {Status} from "@prisma/client";
+import { json } from "@sveltejs/kit";
+import { Status } from "@prisma/client";
 
-import {statusesMap} from "$pages/RootPage/constants";
+import { statusesMap } from "$pages/RootPage/constants";
 
 import UserService from "$services/userService";
 
-import {getTodos} from "$dataAccess/todos";
+import { getTodos } from "$dataAccess/todos";
 
 export const GET = async ({ url, cookies }) => {
-    const status = url.searchParams.get('status');
-    const user = await UserService.getUserFromSessionToken(cookies)
+    const status = url.searchParams.get("status");
+    const user = await UserService.getUserFromSessionToken(cookies);
 
-    const userId = user?.id as number
-    const isStatusValid = Object.keys(statusesMap).includes(status || '');
+    const userId = user?.id as number;
+    const isStatusValid = Object.keys(statusesMap).includes(status || "");
     const statusToQueryBy = status === statusesMap.ALL || !isStatusValid
         ? null
-        : status as Status
+        : status as Status;
 
     try {
-        const todos = await getTodos(userId, statusToQueryBy)
+        const todos = await getTodos(userId, statusToQueryBy);
 
-        return json(todos)
+        return json(todos);
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
-}
+};

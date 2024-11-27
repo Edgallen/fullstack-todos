@@ -1,9 +1,9 @@
-import {type JWTPayload, jwtVerify, SignJWT} from "jose";
-import type {Cookies} from "@sveltejs/kit";
+import { type JWTPayload, jwtVerify, SignJWT } from "jose";
+import type { Cookies } from "@sveltejs/kit";
 
-import {key, sessionCookieName, sessionDurationTime} from "$constants/session";
+import { key, sessionCookieName, sessionDurationTime } from "$constants/session";
 
-import type {User} from "@prisma/client";
+import type { User } from "@prisma/client";
 
 class SessionService {
     private async encrypt(payload: JWTPayload) {
@@ -23,7 +23,7 @@ class SessionService {
     }
 
     async getSession(cookie: string) {
-        return await this.decrypt(cookie)
+        return await this.decrypt(cookie);
     }
 
     async createSession(user: User, cookies: Cookies) {
@@ -33,7 +33,7 @@ class SessionService {
         cookies.set(sessionCookieName, session, {
             expires: expires,
             httpOnly: true,
-            path: '/'
+            path: "/"
         });
     }
 
@@ -41,18 +41,18 @@ class SessionService {
         const parsed = await this.decrypt(cookieValue);
         parsed.expires = new Date(Date.now() + sessionDurationTime);
 
-        const sessionCookieValue =  await this.encrypt(parsed)
+        const sessionCookieValue =  await this.encrypt(parsed);
 
         cookies.set(sessionCookieName, sessionCookieValue, {
             httpOnly: true,
-            path: '',
+            path: "",
             expires: parsed.expires as Date,
         });
     }
 
     async destroySession(cookies: Cookies) {
         cookies.delete(sessionCookieName, {
-            path: '/'
+            path: "/"
         });
     }
 }

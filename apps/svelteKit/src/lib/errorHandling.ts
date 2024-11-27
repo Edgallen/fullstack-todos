@@ -1,11 +1,11 @@
-import {ZodError} from "zod";
-import {fail} from "@sveltejs/kit";
+import { ZodError } from "zod";
+import { fail } from "@sveltejs/kit";
 
 type TFormErrors = Record<string, string[]>
 
 export const generateFormError = (errors: TFormErrors) => ({
     errors
-})
+});
 
 type TZodError = Record<string, string | number>
 
@@ -20,13 +20,13 @@ export const throwZodFormError = ({
     zodError,
     formDataFields
 }: IThrowZodFormError) => {
-    const errors = zodError.flatten().fieldErrors
+    const errors = zodError.flatten().fieldErrors;
 
     return fail(status, {
         ...(formDataFields ? formDataFields : {}),
         errors
-    })
-}
+    });
+};
 
 interface IThrowFormError {
     status: number;
@@ -39,4 +39,4 @@ export const throwFormError = ({ status, errors, formDataFields }: IThrowFormErr
         ...(formDataFields ? formDataFields : {}),
         errors
     })
-)
+);
