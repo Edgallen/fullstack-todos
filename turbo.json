@@ -2,7 +2,17 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": [".env"],
   "tasks": {
+    "build": {
+      "dependsOn": ["^build"]
+    },
     "db:generate-types": {
+      "cache": false
+    },
+    "dev": {
+      "persistent": true,
+      "cache": false
+    },
+    "lint": {
       "cache": false
     }
   }
