@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import {FC} from "react";
-import {cn} from "@/lib/utils";
-import {Prisma, Status} from "@prisma/client";
+import { FC } from "react";
+import { cn } from "@/lib/utils";
+import { Prisma, Status } from "@prisma/client";
 
 import StatusBadge from "../StatusBadge/StatusBadge";
 import CircleCheck from "../CircleCheck/CircleCheck";
@@ -25,7 +25,7 @@ const List: FC<IProps> = ({ todos }) => (
                     <div className="flex flex-col gap-1 items-start">
                         <span
                             className={cn("text-gray-900", {
-                                'line-through': status === Status.DONE
+                                "line-through": status === Status.DONE
                             })}
                         >
                             {text}

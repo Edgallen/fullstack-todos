@@ -6,6 +6,8 @@
   },
   "scripts": {
     "db:studio": "turbo db:studio",
+    "db:migrate-dev": "turbo db:migrate-dev",
+    "db:generate-types": "turbo db:generate-types",
     "app:next-dev": "turbo run next-todo#dev",
     "app:next-lint": "turbo run next-todo#lint",
     "app:svelte-dev": "turbo run sveltekit-todo#dev"

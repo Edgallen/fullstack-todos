@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import React, {FC, HTMLInputAutoCompleteAttribute, HTMLInputTypeAttribute} from "react";
+import React, { FC, HTMLInputAutoCompleteAttribute, HTMLInputTypeAttribute } from "react";
 
 interface IProps {
     label: string;
@@ -15,7 +15,7 @@ const InputField: FC<IProps> = ({
     title,
     label,
     error,
-    inputType = 'text',
+    inputType = "text",
     autoComplete,
     isRequired
 }) => (

@@ -1,10 +1,10 @@
-import {FC} from "react";
+import { FC } from "react";
 
 import List from "./components/List/List";
 
-import {getTodos} from "@/api/todos/actions";
+import { getTodos } from "@/api/todos/actions";
 
-import {statusesMap} from "@/pages/RootPage/constants";
+import { statusesMap } from "@/pages/RootPage/constants";
 
 interface IProps {
     searchParams?: {
@@ -13,11 +13,11 @@ interface IProps {
 }
 
 const TodoList: FC<IProps> = async ({ searchParams }) => {
-    const selectedStatus = searchParams?.status || statusesMap.ALL
+    const selectedStatus = searchParams?.status || statusesMap.ALL;
 
     const statusToFetchBy = selectedStatus === statusesMap.ALL
         ? null
-        : selectedStatus
+        : selectedStatus;
 
     const todosResponse = await getTodos(statusToFetchBy);
 
@@ -25,7 +25,7 @@ const TodoList: FC<IProps> = async ({ searchParams }) => {
         <List
             todos={todosResponse?.data || []}
         />
-    )
+    );
 };
 
 export default TodoList;

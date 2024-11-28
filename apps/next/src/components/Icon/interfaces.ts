@@ -1,4 +1,4 @@
-import {icons} from "@/components/Icon/constants";
+import { icons } from "@/components/Icon/constants";
 
 export type TIconType = keyof typeof icons
 

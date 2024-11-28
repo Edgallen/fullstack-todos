@@ -1,4 +1,4 @@
-import Plus from './components/Plus/Plus'
+import Plus from "./components/Plus/Plus";
 import Check from "./components/Check/Check";
 import EllipsisVertical from "./components/EllipsisVertical/EllipsisVertical";
 import Trash from "./components/Trash/Trash";
@@ -14,4 +14,4 @@ export const icons = {
     circleCheck: CircleCheck,
     briefcase: Briefcase,
     logOut: LogOut
-} as const
+} as const;
