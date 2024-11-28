@@ -8,21 +8,22 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --max-warnings 0",
-    "lint-fix": "eslint . --fix --max-warnings 0"
+    "lint": "eslint ./src --max-warnings 0",
+    "lint-fix": "eslint ./src --fix --max-warnings 0"
   },
   "dependencies": {
+    "@database/prisma": "workspace:*",
+    "@fullstack-todos/auth": "workspace:*",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
-    "@fullstack-todos/auth": "workspace:*",
-    "@database/prisma": "workspace:*"
+    "babel-plugin-react-compiler": "19.0.0-beta-df7b47d-20241124"
   },
   "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
-    "eslint-config-next": "15.0.3",
-    "@repo/eslint-config": "workspace:*"
+    "eslint-config-next": "15.0.3"
   },
   "pnpm": {
     "overrides": {

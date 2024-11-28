@@ -7,6 +7,7 @@ import globals from "globals";
 import pluginNext from "@next/eslint-plugin-next";
 import baseConfig from "./base.js";
 import { commonRules } from "./rules/commonTypeScript.js";
+import reactCompiler from 'eslint-plugin-react-compiler'
 
 /**
  * A custom ESLint configuration for libraries that use Next.js.
@@ -30,11 +31,13 @@ const config = [
     {
         plugins: {
             "@next/next": pluginNext,
+            'react-compiler': reactCompiler,
         },
         rules: {
             ...pluginNext.configs.recommended.rules,
             ...pluginNext.configs["core-web-vitals"].rules,
-            ...commonRules
+            ...commonRules,
+            'react-compiler/react-compiler': 'error',
         },
     },
     {
