@@ -14,4 +14,4 @@ export const icons = {
     circleCheck: CircleCheck,
     briefcase: Briefcase,
     logOut: LogOut
-} as const
+} as const;

@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { cache } from "react";
-import { SessionValidationResult, validateSessionToken } from "@fullstack-todos/auth/src";
+import { SessionValidationResult, validateSessionToken } from "@fullstack-todos/auth";
 
 import prisma from "@/lib/prisma";
 

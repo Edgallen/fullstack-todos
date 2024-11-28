@@ -6,7 +6,7 @@ export const getSingleUser = (username: string) => (
             username
         }
     })
-)
+);
 
 export const createUser = (username: string, password: string) => (
     prisma.user.create({
@@ -15,4 +15,4 @@ export const createUser = (username: string, password: string) => (
             password
         }
     })
-)
+);

@@ -1,6 +1,6 @@
-import {Status} from "@prisma/client";
+import { Status } from "@prisma/client";
 
-import type {TIconType} from "$components/Icon/interfaces";
+import type { TIconType } from "$components/Icon/interfaces";
 
 interface IMenuActions {
     title: string;
@@ -13,23 +13,23 @@ interface IMenuActions {
 
 export const menuActions: IMenuActions[] = [
     {
-        title: 'Take in Work',
-        icon: 'briefcase',
+        title: "Take in Work",
+        icon: "briefcase",
         statusShowCondition: Status.NEW,
         statusToTransition: Status.IN_WORK,
         action: `?/updateTodo`
     },
     {
-        title: 'Mark as Done',
-        icon: 'circleCheck',
+        title: "Mark as Done",
+        icon: "circleCheck",
         statusShowCondition: Status.IN_WORK,
         statusToTransition: Status.DONE,
         action: `?/updateTodo`
     },
     {
-        title: 'Delete',
-        icon: 'trash',
-        className: 'text-red-500',
-        action: '?/deleteTodo'
+        title: "Delete",
+        icon: "trash",
+        className: "text-red-500",
+        action: "?/deleteTodo"
     },
-]
+];

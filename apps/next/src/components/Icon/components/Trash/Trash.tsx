@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import {FC, memo} from 'react';
+import { FC, memo } from "react";
 
-import type {IIconProps} from "@/components/Icon/interfaces";
+import type { IIconProps } from "@/components/Icon/interfaces";
 
 const Trash: FC<IIconProps> = ({
     className,

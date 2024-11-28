@@ -1,4 +1,4 @@
-import {FC, Suspense} from "react";
+import { FC, Suspense } from "react";
 
 import InputForm from "./components/InputForm/InputForm";
 import StatusSelector from "./components/StatusSelector/StatusSelector";

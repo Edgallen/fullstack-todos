@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
     createContext,
@@ -11,7 +11,7 @@ import {
     useRef,
     useState
 } from "react";
-import {cn} from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 import useClickOutside from "@/hooks/useClickOutside";
 
@@ -19,10 +19,10 @@ interface IMenubarContext {
     isMenuOpen: boolean,
     setIsMenuOpen: Dispatch<SetStateAction<boolean>>
 }
-const MenuBarContext = createContext<IMenubarContext | null>(null)
+const MenuBarContext = createContext<IMenubarContext | null>(null);
 
 export const Menubar: FC<PropsWithChildren> = ({ children }) => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
         <div className="flex flex-col gap-24 relative items-center">
@@ -33,7 +33,7 @@ export const Menubar: FC<PropsWithChildren> = ({ children }) => {
                 {children}
             </MenuBarContext.Provider>
         </div>
-    )
+    );
 };
 
 interface IMenubarTriggerProps {
@@ -44,7 +44,7 @@ export const MenubarTrigger: FC<PropsWithChildren<IMenubarTriggerProps>> = ({
     className,
     children
 }) => {
-    const context = useContext(MenuBarContext)
+    const context = useContext(MenuBarContext);
 
     return (
         <button
@@ -53,8 +53,8 @@ export const MenubarTrigger: FC<PropsWithChildren<IMenubarTriggerProps>> = ({
         >
             {children}
         </button>
-    )
-}
+    );
+};
 
 interface IMenuClickOutsideWrapperProps {
     className?: string
@@ -64,15 +64,15 @@ const MenuClickOutsideWrapper: FC<PropsWithChildren<IMenuClickOutsideWrapperProp
     className,
     children
 }) => {
-    const context = useContext(MenuBarContext)
+    const context = useContext(MenuBarContext);
 
     const ref = useRef<HTMLDivElement>(null);
 
     const handleClickOutside = useCallback(() => {
-        context?.setIsMenuOpen(false)
-    }, [context])
+        context?.setIsMenuOpen(false);
+    }, [context]);
 
-    useClickOutside(ref, handleClickOutside)
+    useClickOutside(ref, handleClickOutside);
 
     return (
         <div
@@ -81,25 +81,25 @@ const MenuClickOutsideWrapper: FC<PropsWithChildren<IMenuClickOutsideWrapperProp
         >
             {children}
         </div>
-    )
-}
+    );
+};
 
 export const MenubarContent: FC<PropsWithChildren<IMenuClickOutsideWrapperProps>> = ({
     className,
     children
 }) => {
-    const context = useContext(MenuBarContext)
+    const context = useContext(MenuBarContext);
 
     if (!context?.isMenuOpen) {
-        return null
+        return null;
     }
 
     return (
         <MenuClickOutsideWrapper className={className}>
             {children}
         </MenuClickOutsideWrapper>
-    )
-}
+    );
+};
 
 interface IMenubarItemProps {
     className?: string
@@ -111,12 +111,12 @@ export const MenubarItem: FC<PropsWithChildren<IMenubarItemProps>> = ({
     onClick = () => {},
     children
 }) => {
-    const context = useContext(MenuBarContext)
+    const context = useContext(MenuBarContext);
 
     const onCLickHandler = () => {
-        onClick()
-        context?.setIsMenuOpen(false)
-    }
+        onClick();
+        context?.setIsMenuOpen(false);
+    };
 
     return (
         <button
@@ -125,5 +125,5 @@ export const MenubarItem: FC<PropsWithChildren<IMenubarItemProps>> = ({
         >
             {children}
         </button>
-    )
-}
+    );
+};
