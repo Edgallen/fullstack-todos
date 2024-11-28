@@ -8,7 +8,7 @@ import { sessionCookieName } from "@/constants/session";
 
 class UserService {
     async getUserFromSessionToken () {
-        const cookieStore = cookies();
+        const cookieStore = await cookies();
         const sessionCookie = cookieStore.get(sessionCookieName)?.value || "";
 
         try {

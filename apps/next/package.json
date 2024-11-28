@@ -5,23 +5,29 @@
   "type": "module",
   "scripts": {
     "check-types": "tsc --noEmit",
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 0",
     "lint-fix": "eslint . --fix --max-warnings 0"
   },
   "dependencies": {
-    "next": "14.2.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "next": "15.0.3",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106",
     "@fullstack-todos/auth": "workspace:*",
     "@database/prisma": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "eslint-config-next": "14.2.3",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "eslint-config-next": "15.0.3",
     "@repo/eslint-config": "workspace:*"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "npm:types-react@19.0.0-rc.1",
+      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+    }
   }
 }

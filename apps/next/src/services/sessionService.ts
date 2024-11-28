@@ -26,7 +26,7 @@ class SessionService {
         });
 
         const expireDate = new Date(Date.now() + sessionDurationTime);
-        setSessionTokenCookie(token, expireDate);
+        await setSessionTokenCookie(token, expireDate);
     }
 }
 
