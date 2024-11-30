@@ -1,7 +1,6 @@
 "use client";
 
-import { FC, useRef } from "react";
-import { useFormState } from "react-dom";
+import { FC, useRef, useActionState } from "react";
 import { cn } from "@/lib/utils";
 
 import SubmitButton from "./components/SubmitButton/SubmitButton";
@@ -15,7 +14,7 @@ const initialState: ITodoFormState = {
 } as const;
 
 const InputForm: FC = () => {
-    const [state, dispatch] = useFormState(createTodo, initialState);
+    const [state, dispatch] = useActionState(createTodo, initialState);
 
     const formRef = useRef<HTMLFormElement>(null);
 

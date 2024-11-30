@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { useFormState } from "react-dom";
+import React, { useActionState } from "react";
 import Link from "next/link";
 
 import InputField from "@/components/InputField";
@@ -16,7 +15,7 @@ const initialSate: IAuthFormState<IRegisterAuthErrors> = {
 } as const;
 
 const Page = () => {
-    const [state, dispatch] = useFormState(register, initialSate);
+    const [state, dispatch] = useActionState(register, initialSate);
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">

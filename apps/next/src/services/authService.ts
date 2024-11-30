@@ -69,7 +69,7 @@ class AuthService {
             });
         }
 
-        deleteSessionTokenCookie();
+        await deleteSessionTokenCookie();
     }
 }
 

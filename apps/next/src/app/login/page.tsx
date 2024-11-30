@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { useFormState } from "react-dom";
+import React, { useActionState } from "react";
 import Link from "next/link";
 
 import InputField from "@/components/InputField";
@@ -16,7 +15,7 @@ const initialSate: IAuthFormState = {
 } as const;
 
 const Page = () => {
-    const [state, dispatch] = useFormState(logIn, initialSate);
+    const [state, dispatch] = useActionState(logIn, initialSate);
 
     const onTestUserSignInHandler = async () => {
         await SignInAsTestUser();

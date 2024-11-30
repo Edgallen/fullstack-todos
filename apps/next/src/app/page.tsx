@@ -9,7 +9,7 @@ interface IProps {
     }
 }
 
-const Home: FC<IProps> = ({ searchParams }) => (
+const Home: FC<IProps> = async ({ searchParams }) => (
     <MainLayout>
         <RootPage
             searchParams={searchParams}
