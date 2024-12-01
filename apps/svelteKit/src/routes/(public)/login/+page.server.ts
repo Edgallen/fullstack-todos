@@ -4,7 +4,7 @@ import { throwFormError, throwZodFormError } from "$lib/errorHandling";
 
 import AuthService from "$services/authService";
 
-import { getSingleUser } from "$dataAccess/users";
+import { getSingleUser } from "@database/data-access";
 
 import { AuthFormSchema } from "$interfaces/auth";
 

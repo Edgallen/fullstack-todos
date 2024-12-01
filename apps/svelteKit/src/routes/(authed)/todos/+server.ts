@@ -1,11 +1,12 @@
 import { json } from "@sveltejs/kit";
-import { Status } from "@prisma/client";
 
 import { statusesMap } from "$pages/RootPage/constants";
 
 import UserService from "$services/userService";
 
-import { getTodos } from "$dataAccess/todos";
+import { getTodos } from "@database/data-access";
+
+import type { Status } from "@database/prisma";
 
 export const GET = async ({ url, cookies }) => {
     const status = url.searchParams.get("status");

@@ -96,6 +96,13 @@ importers:
         version: 15.0.3(eslint@9.15.0(jiti@1.21.6))(typescript@5.7.2)
 
   apps/svelteKit:
+    dependencies:
+      '@database/data-access':
+        specifier: workspace:*
+        version: link:../../packages/dataAccess
+      '@database/prisma':
+        specifier: workspace:*
+        version: link:../../packages/database
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*

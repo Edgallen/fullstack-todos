@@ -2,10 +2,10 @@ import UserService from "$services/userService";
 
 import { throwZodFormError } from "$lib/errorHandling";
 
-import { createTodo, deleteTodo, updateTodo } from "$dataAccess/todos";
+import { createTodo, deleteTodo, updateTodo } from "@database/data-access";
 
 import { DeleteTodoSchema, TodoFormSchema, UpdateTodoSchema } from "$interfaces/todos";
-import { Status } from "@prisma/client";
+import type { Status } from "@database/prisma";
 
 export const load = async ({ parent, cookies }) => {
     await parent();

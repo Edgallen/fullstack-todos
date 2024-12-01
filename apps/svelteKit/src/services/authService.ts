@@ -5,7 +5,7 @@ import { generateFormError } from "$lib/errorHandling";
 
 import SessionService from "$services/sessionService";
 
-import { createUser, getSingleUser } from "$dataAccess/users";
+import { createUser, getSingleUser } from "@database/data-access";
 
 class AuthService {
     async registration(username: string, password: string, cookies: Cookies) {

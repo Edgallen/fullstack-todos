@@ -1,4 +1,4 @@
-import prisma from "@/client";
+import prisma from "../client";
 
 import { Status } from "@database/prisma";
 
