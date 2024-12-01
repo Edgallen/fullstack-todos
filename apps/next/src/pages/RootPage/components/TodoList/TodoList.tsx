@@ -7,13 +7,11 @@ import { getTodos } from "@/api/todos/actions";
 import { statusesMap } from "@/pages/RootPage/constants";
 
 interface IProps {
-    searchParams?: {
-        status?: string
-    }
+    status: string
 }
 
-const TodoList: FC<IProps> = async ({ searchParams }) => {
-    const selectedStatus = searchParams?.status || statusesMap.ALL;
+const TodoList: FC<IProps> = async ({ status }) => {
+    const selectedStatus = status || statusesMap.ALL;
 
     const statusToFetchBy = selectedStatus === statusesMap.ALL
         ? null

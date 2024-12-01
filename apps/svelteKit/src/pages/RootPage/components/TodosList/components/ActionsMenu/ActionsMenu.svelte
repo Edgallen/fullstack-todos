@@ -1,16 +1,16 @@
 <script lang="ts">
     import { enhance } from '$app/forms';
+    import db from "@database/prisma";
 
     import {Menubar, MenubarContent, MenubarItem, MenubarTrigger} from '$components/MenuBar'
     import Icon from "$components/Icon/Icon.svelte";
 
     import {menuActions} from "./constants";
 
-    import {Status} from "@prisma/client";
     import {createEventDispatcher} from "svelte";
 
     export let id: number;
-    export let status: Status;
+    export let status: db.Status;
 
     const dispatch = createEventDispatcher()
     const submit = () => dispatch('submit')

@@ -3,7 +3,7 @@ export {
     validateSessionToken,
     createSession,
     invalidateSession
-} from './authProvider'
+} from "./authProvider";
 export type {
     SessionValidationResult
-} from './authProvider'
+} from "./authProvider";

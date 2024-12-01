@@ -2,16 +2,16 @@
 
 import { FC } from "react";
 import { cn } from "@/lib/utils";
-import { Status } from "@prisma/client";
+import db from "@database/prisma";
 
 import Icon from "@/components/Icon/Icon";
 
 interface IProps {
-    status: Status
+    status: db.Status
 }
 
 const CircleCheck: FC<IProps> = ({ status }) => {
-    const isTodoDone = status === Status.DONE;
+    const isTodoDone = status === db.Status.DONE;
 
     return (
         <div

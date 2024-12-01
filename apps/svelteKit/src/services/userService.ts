@@ -1,9 +1,9 @@
-import type { Cookies } from "@sveltejs/kit";
-import { Prisma } from "@prisma/client";
-
 import SessionService from "$services/sessionService";
+import db from "@database/prisma";
 
 import { sessionCookieName } from "$constants/session";
+
+import type { Cookies } from "@sveltejs/kit";
 
 class UserService {
     async getUserFromSessionToken (cookies: Cookies) {
@@ -12,7 +12,7 @@ class UserService {
         try {
             const session = await SessionService.getSession(sessionCookie);
 
-            return session.user as Prisma.UserGetPayload<{
+            return session.user as db.Prisma.UserGetPayload<{
                 include: {
                     todos: false
                 }

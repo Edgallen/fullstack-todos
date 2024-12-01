@@ -1,8 +1,5 @@
+import db from "@database/prisma";
 import { createSession, generateSessionToken, validateSessionToken } from "@fullstack-todos/auth";
-
-import { User } from "@prisma/client";
-
-import prisma from "@/lib/prisma";
 
 import { setSessionTokenCookie } from "@/services/sessionCookie";
 
@@ -12,17 +9,15 @@ class SessionService {
     async getSession(token: string) {
         return await validateSessionToken({
             token,
-            prismaClient: prisma
         });
     }
 
-    async createSession(user: User) {
+    async createSession(user: db.User) {
         const token = generateSessionToken();
 
         await createSession({
             userId: user.id,
             token,
-            prismaClient: prisma
         });
 
         const expireDate = new Date(Date.now() + sessionDurationTime);

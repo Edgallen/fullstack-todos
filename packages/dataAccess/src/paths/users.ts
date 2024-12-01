@@ -1,4 +1,4 @@
-import prisma from "$lib/prisma";
+import prisma from "../client";
 
 export const getSingleUser = (username: string) => (
     prisma.user.findUnique({

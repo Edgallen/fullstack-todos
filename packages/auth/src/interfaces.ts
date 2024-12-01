@@ -1,21 +1,12 @@
-import type {Prisma, PrismaClient} from "@prisma/client";
-import type {DefaultArgs} from "@prisma/client/runtime/library";
-
-export type TPrismaClient = PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs>
-
-interface IPrismaService {
-    prismaClient: TPrismaClient
-}
-
-export interface ICreateSession extends IPrismaService{
+export interface ICreateSession {
     token: string;
     userId: number;
 }
 
-export interface IValidateSessionToken extends IPrismaService {
+export interface IValidateSessionToken {
     token: string
 }
 
-export interface IInvalidateSession extends IPrismaService {
+export interface IInvalidateSession {
     sessionId: string;
 }

@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 
-import { getSingleUser } from "@/dataAccess/users";
+import { getSingleUser } from "@database/data-access";
 
 import UserService from "@/services/authService";
 

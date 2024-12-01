@@ -5,30 +5,34 @@ import StatusSelector from "./components/StatusSelector/StatusSelector";
 import TodoList from "./components/TodoList/TodoList";
 
 interface IProps {
-    searchParams?: {
-        status?: string
-    }
+    searchParams: Promise<{
+        status: string
+    }>
 }
 
-const RootPage: FC<IProps> = async ({ searchParams }) => (
-    <div className="flex flex-col w-[600px]">
-        <InputForm />
+const RootPage: FC<IProps> = async ({ searchParams }) => {
+    const { status } = await searchParams;
 
-        <StatusSelector />
+    return (
+        <div className="flex flex-col w-[600px]">
+            <InputForm/>
 
-        <Suspense
-            key={searchParams?.status}
-            fallback={
-                <span className="flex items-center justify-center w-full h-12 text-gray-900">
+            <StatusSelector/>
+
+            <Suspense
+                key={status}
+                fallback={
+                    <span className="flex items-center justify-center w-full h-12 text-gray-900">
                     Loading...
                 </span>
-            }
-        >
-            <TodoList
-                searchParams={searchParams}
-            />
-        </Suspense>
-    </div>
-);
+                }
+            >
+                <TodoList
+                    status={status}
+                />
+            </Suspense>
+        </div>
+    );
+};
 
 export default RootPage;

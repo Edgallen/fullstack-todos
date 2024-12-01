@@ -6,7 +6,8 @@
   "exports": {
     "./base": "./base.js",
     "./next-js": "./next.js",
-    "./svelte": "./svelte.js"
+    "./svelte": "./svelte.js",
+    "./typescript-basic": "./typescript-basic.js"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^15.0.3",

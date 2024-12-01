@@ -1,12 +1,12 @@
-import { Status } from "@prisma/client";
+import db from "@database/prisma";
 
 import type { TIconType } from "$components/Icon/interfaces";
 
 interface IMenuActions {
     title: string;
     icon?: TIconType;
-    statusShowCondition?: Status;
-    statusToTransition?: Status;
+    statusShowCondition?: db.Status;
+    statusToTransition?: db.Status;
     className?: string;
     action: string;
 }
@@ -15,15 +15,15 @@ export const menuActions: IMenuActions[] = [
     {
         title: "Take in Work",
         icon: "briefcase",
-        statusShowCondition: Status.NEW,
-        statusToTransition: Status.IN_WORK,
+        statusShowCondition: db.Status.NEW,
+        statusToTransition: db.Status.IN_WORK,
         action: `?/updateTodo`
     },
     {
         title: "Mark as Done",
         icon: "circleCheck",
-        statusShowCondition: Status.IN_WORK,
-        statusToTransition: Status.DONE,
+        statusShowCondition: db.Status.IN_WORK,
+        statusToTransition: db.Status.DONE,
         action: `?/updateTodo`
     },
     {

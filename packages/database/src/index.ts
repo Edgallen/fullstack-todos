@@ -1,1 +1,3 @@
-export * from '@prisma/client';
+import * as db from "@prisma/client"
+
+export default db

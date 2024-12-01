@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import db from "@database/prisma";
 
 import UserService from "@/services/userService";
 
@@ -9,16 +10,15 @@ import {
     createTodo as dbCreateTodo,
     updateTodo as dbUpdateTodo,
     deleteTodo as dbDeleteTodo
-} from "@/dataAccess/todos";
+} from "@database/data-access";
 
-import { Status } from "@prisma/client";
 import { ITodoFormState, TodoFormSchema } from "@/api/todos/definitions";
 
 export const getTodos = async (status: string | null) => {
     const user = await UserService.getUserFromSessionToken();
 
     try {
-        const todos = await dbGetTodos(user.id, status as Status);
+        const todos = await dbGetTodos(user.id, status as db.Status);
 
         return { data: todos };
     } catch (error) {

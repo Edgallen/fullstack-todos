@@ -2,8 +2,6 @@ import { cookies } from "next/headers";
 import { cache } from "react";
 import { SessionValidationResult, validateSessionToken } from "@fullstack-todos/auth";
 
-import prisma from "@/lib/prisma";
-
 export async function setSessionTokenCookie(token: string, expiresAt: Date): Promise<void> {
     const cookieStore = await cookies();
     cookieStore.set("session", token, {
@@ -25,7 +23,6 @@ export const getCurrentSession = cache(async (): Promise<SessionValidationResult
 
     return await validateSessionToken({
         token,
-        prismaClient: prisma
     });
 });
 
