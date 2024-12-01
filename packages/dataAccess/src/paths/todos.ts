@@ -1,6 +1,6 @@
-import prisma from "@/lib/prisma";
+import prisma from "@/client";
 
-import { Status } from "@prisma/client";
+import { Status } from "@database/prisma";
 
 export const getTodos = (userId: number, status?: Status | null) => (
     prisma.todo.findMany({

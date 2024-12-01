@@ -2,6 +2,7 @@
   "name": "@database/prisma",
   "private": false,
   "version": "0.1.0",
+  "type": "module",
   "scripts": {
     "db:studio": "prisma studio",
     "db:migrate-dev": "prisma migrate dev",

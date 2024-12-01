@@ -3,10 +3,14 @@
   "private": false,
   "version": "0.1.0",
   "description": "Fullstack-todos auth provider package",
+  "type": "module",
   "scripts": {
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "lint:fix": "eslint --fix"
   },
   "dependencies": {
+    "@database/data-access": "workspace:*",
+    "@database/prisma": "workspace:*",
     "@oslojs/crypto": "^1.0.1",
     "@oslojs/encoding": "^1.1.0"
   },

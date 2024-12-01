@@ -60,6 +60,9 @@ importers:
 
   apps/next:
     dependencies:
+      '@database/data-access':
+        specifier: workspace:*
+        version: link:../../packages/dataAccess
       '@database/prisma':
         specifier: workspace:*
         version: link:../../packages/database
@@ -124,12 +127,31 @@ importers:
 
   packages/auth:
     dependencies:
+      '@database/data-access':
+        specifier: workspace:*
+        version: link:../dataAccess
+      '@database/prisma':
+        specifier: workspace:*
+        version: link:../database
       '@oslojs/crypto':
         specifier: ^1.0.1
         version: 1.0.1
       '@oslojs/encoding':
         specifier: ^1.1.0
         version: 1.1.0
+
+  packages/dataAccess:
+    dependencies:
+      '@database/prisma':
+        specifier: workspace:*
+        version: link:../database
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      typescript:
+        specifier: ^5.0.0
+        version: 5.7.2
 
   packages/database: {}
 

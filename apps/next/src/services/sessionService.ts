@@ -2,8 +2,6 @@ import { createSession, generateSessionToken, validateSessionToken } from "@full
 
 import { User } from "@prisma/client";
 
-import prisma from "@/lib/prisma";
-
 import { setSessionTokenCookie } from "@/services/sessionCookie";
 
 import { sessionDurationTime } from "@/constants/session";
@@ -12,7 +10,6 @@ class SessionService {
     async getSession(token: string) {
         return await validateSessionToken({
             token,
-            prismaClient: prisma
         });
     }
 
@@ -22,7 +19,6 @@ class SessionService {
         await createSession({
             userId: user.id,
             token,
-            prismaClient: prisma
         });
 
         const expireDate = new Date(Date.now() + sessionDurationTime);

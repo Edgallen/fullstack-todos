@@ -9,9 +9,9 @@ import {
     createTodo as dbCreateTodo,
     updateTodo as dbUpdateTodo,
     deleteTodo as dbDeleteTodo
-} from "@/dataAccess/todos";
+} from "@database/data-access";
 
-import { Status } from "@prisma/client";
+import { Status } from "@database/prisma";
 import { ITodoFormState, TodoFormSchema } from "@/api/todos/definitions";
 
 export const getTodos = async (status: string | null) => {

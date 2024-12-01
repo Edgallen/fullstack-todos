@@ -1,0 +1,16 @@
+{
+  "name": "@database/data-access",
+  "private": false,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@database/prisma": "workspace:*"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "typescript": "^5.0.0"
+  }
+}

@@ -3,5 +3,7 @@
   "include": ["src"],
   "compilerOptions": {
     "outDir": "build",
+    "module": "esnext",
+    "moduleResolution": "bundler"
   }
 }
