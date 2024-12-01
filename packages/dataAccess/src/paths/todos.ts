@@ -1,8 +1,8 @@
 import prisma from "../client";
 
-import { Status } from "@database/prisma";
+import db from "@database/prisma";
 
-export const getTodos = (userId: number, status?: Status | null) => (
+export const getTodos = (userId: number, status?: db.Status | null) => (
     prisma.todo.findMany({
         where: {
             userId,
@@ -29,7 +29,7 @@ export const createTodo = (userId: number, text: string) => (
     })
 );
 
-export const updateTodo = (id: number, status: Status) => (
+export const updateTodo = (id: number, status: db.Status) => (
     prisma.todo.update({
         data: {
             status
