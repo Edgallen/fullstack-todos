@@ -1,3 +1,4 @@
+import db from "@database/prisma";
 import UserService from "$services/userService";
 
 import { throwZodFormError } from "$lib/errorHandling";
@@ -5,7 +6,6 @@ import { throwZodFormError } from "$lib/errorHandling";
 import { createTodo, deleteTodo, updateTodo } from "@database/data-access";
 
 import { DeleteTodoSchema, TodoFormSchema, UpdateTodoSchema } from "$interfaces/todos";
-import type { Status } from "@database/prisma";
 
 export const load = async ({ parent, cookies }) => {
     await parent();
@@ -65,7 +65,7 @@ export const actions = {
         const { id, status } = validFields.data;
 
         try {
-            await updateTodo(id, status as Status);
+            await updateTodo(id, status as db.Status);
         } catch (error) {
             console.log(error);
         }

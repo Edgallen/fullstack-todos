@@ -1,9 +1,8 @@
 import { type JWTPayload, jwtVerify, SignJWT } from "jose";
 import type { Cookies } from "@sveltejs/kit";
+import db from "@database/prisma";
 
 import { key, sessionCookieName, sessionDurationTime } from "$constants/session";
-
-import type { User } from "@prisma/client";
 
 class SessionService {
     private async encrypt(payload: JWTPayload) {
@@ -26,7 +25,7 @@ class SessionService {
         return await this.decrypt(cookie);
     }
 
-    async createSession(user: User, cookies: Cookies) {
+    async createSession(user: db.User, cookies: Cookies) {
         const expires = new Date(Date.now() + sessionDurationTime);
         const session = await this.encrypt({ user, expires });
 

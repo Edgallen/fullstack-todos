@@ -1,12 +1,12 @@
 <script lang="ts">
-    import {Prisma, Status} from "@prisma/client";
+    import db from "@database/prisma";
     import {cn} from "$lib/utils";
 
     import CircleCheck from "./components/CircleCheck/CircleCheck.svelte";
     import StatusBadge from "./components/StatusBadge/StatusBadge.svelte";
     import ActionsMenu from "./components/ActionsMenu/ActionsMenu.svelte";
 
-    export let todos: Prisma.TodoGetPayload<null>[] | null = null
+    export let todos: db.Prisma.TodoGetPayload<null>[] | null = null
 </script>
 
 <ul class="flex flex-col gap-4 mt-4 pb-10">
@@ -21,7 +21,7 @@
                     <div class="flex flex-col gap-1 items-start">
                         <span
                             class={cn("text-gray-900", {
-                                'line-through': status === Status.DONE
+                                'line-through': status === db.Status.DONE
                             })}
                         >
                             {text}

@@ -1,7 +1,7 @@
 "use client";
 
 import { FC } from "react";
-import { Status } from "@prisma/client";
+import db from "@database/prisma";
 
 import Icon from "@/components/Icon/Icon";
 import { Menubar, MenubarContent, MenubarItem, MenubarTrigger } from "@/components/Menubar/Menubar";
@@ -10,7 +10,7 @@ import { menuActions } from "./constants";
 
 interface IProps {
     id: number
-    status: Status;
+    status: db.Status;
 }
 
 const ActionsMenu: FC<IProps> = ({

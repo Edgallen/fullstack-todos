@@ -1,5 +1,6 @@
 import { encodeBase32LowerCaseNoPadding, encodeHexLowerCase } from "@oslojs/encoding";
 import { sha256 } from "@oslojs/crypto/sha2";
+import db from "@database/prisma";
 
 import {
     createSession as dbCreateSession,
@@ -8,7 +9,6 @@ import {
     updateSession
 } from "@database/data-access";
 
-import type { User, Session } from "@database/prisma";
 import type { ICreateSession, IInvalidateSession, IValidateSessionToken } from "./interfaces";
 
 export const generateSessionToken = (): string => {
@@ -21,9 +21,9 @@ export const generateSessionToken = (): string => {
 export const createSession = async ({
     userId,
     token
-}: ICreateSession): Promise<Session> => {
+}: ICreateSession): Promise<db.Session> => {
     const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
-    const session: Session = {
+    const session: db.Session = {
         id: sessionId,
         userId,
         expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
@@ -64,5 +64,5 @@ export const invalidateSession = async ({
 };
 
 export type SessionValidationResult =
-    | { session: Session, user: User }
+    | { session: db.Session, user: db.User }
     | { session: null, user: null }

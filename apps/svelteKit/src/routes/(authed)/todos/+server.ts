@@ -6,7 +6,7 @@ import UserService from "$services/userService";
 
 import { getTodos } from "@database/data-access";
 
-import type { Status } from "@database/prisma";
+import type db from "@database/prisma";
 
 export const GET = async ({ url, cookies }) => {
     const status = url.searchParams.get("status");
@@ -16,7 +16,7 @@ export const GET = async ({ url, cookies }) => {
     const isStatusValid = Object.keys(statusesMap).includes(status || "");
     const statusToQueryBy = status === statusesMap.ALL || !isStatusValid
         ? null
-        : status as Status;
+        : status as db.Status;
 
     try {
         const todos = await getTodos(userId, statusToQueryBy);

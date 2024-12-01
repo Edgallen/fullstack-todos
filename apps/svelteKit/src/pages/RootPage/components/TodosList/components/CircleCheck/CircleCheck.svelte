@@ -1,12 +1,12 @@
 <script lang="ts">
-    import {Status} from "@prisma/client";
+    import db from "@database/prisma";
     import {cn} from "$lib/utils";
 
     import Icon from "$components/Icon/Icon.svelte";
 
-    export let status: Status;
+    export let status: db.Status;
 
-    $: isTodoDone = status === Status.DONE;
+    $: isTodoDone = status === db.Status.DONE;
 </script>
 
 <div

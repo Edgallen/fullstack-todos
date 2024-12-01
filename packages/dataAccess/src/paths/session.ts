@@ -1,8 +1,8 @@
 import prisma from "../client";
 
-import type { Session } from "@database/prisma";
+import db from "@database/prisma";
 
-export const createSession = (session: Session) => prisma.session.create({
+export const createSession = (session: db.Session) => prisma.session.create({
     data: session
 });
 

@@ -1,5 +1,5 @@
+import db from "@database/prisma";
 import { cookies } from "next/headers";
-import { Prisma } from "@prisma/client";
 import { redirect } from "next/navigation";
 
 import SessionService from "@/services/sessionService";
@@ -21,7 +21,7 @@ class UserService {
                 redirect("/login");
             }
 
-            return user as Prisma.UserGetPayload<{
+            return user as db.Prisma.UserGetPayload<{
                 include: {
                     todos: false
                 }

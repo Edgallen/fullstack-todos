@@ -2,14 +2,14 @@
 
 import { FC } from "react";
 import { cn } from "@/lib/utils";
-import { Prisma, Status } from "@prisma/client";
+import db from "@database/prisma";
 
 import StatusBadge from "../StatusBadge/StatusBadge";
 import CircleCheck from "../CircleCheck/CircleCheck";
 import ActionsMenu from "../ActionsMenu/ActionsMenu";
 
 interface IProps {
-    todos: Prisma.TodoGetPayload<null>[]
+    todos: db.Prisma.TodoGetPayload<null>[]
 }
 
 const List: FC<IProps> = ({ todos }) => (
@@ -25,7 +25,7 @@ const List: FC<IProps> = ({ todos }) => (
                     <div className="flex flex-col gap-1 items-start">
                         <span
                             className={cn("text-gray-900", {
-                                "line-through": status === Status.DONE
+                                "line-through": status === db.Status.DONE
                             })}
                         >
                             {text}
